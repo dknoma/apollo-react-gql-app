@@ -6,7 +6,7 @@ const ChannelsList = () =>
   (<ul>
     <li>Channel 1</li>
     <li>Channel 2</li>
- </ul> )
+ </ul> );
 
 class App extends Component {
   render() {
