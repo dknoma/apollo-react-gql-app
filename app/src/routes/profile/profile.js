@@ -1,6 +1,6 @@
 import React from 'react'
 // import { gql } from 'apollo-boost';
-import { graphql, Query } from 'react-apollo';
+import { graphql, Query, Mutation } from 'react-apollo';
 
 import { GetProfileQuery, GetProfileListQuery } from '../../queries/queries'
 
@@ -96,7 +96,7 @@ const UserProfileList = () => (
 const ProfileWithData = graphql(GetProfileQuery)(UserProfile);
 const ProfileListWithData = graphql(GetProfileListQuery)(UserProfileList);
 
-// Home component
+// Profile List component
 export class Profiles extends React.Component {
   constructor(props) {
     super(props)
@@ -107,17 +107,16 @@ export class Profiles extends React.Component {
   }
   
   render() {
-    // console.log(this.props)
-    // const { channels = [] } = this.props.data
+    console.log("PL log: " + this.props)
     return (
       <div>
         <ProfileListWithData />
-        {/* <ProfileWithData /> */}
      </div>
     )
   }
 };
 
+// Regular profile component
 export class Profile extends React.Component {
   constructor(props) {
     super(props)
