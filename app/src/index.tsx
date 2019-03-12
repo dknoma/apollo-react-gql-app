@@ -25,17 +25,18 @@ import { createHttpLink } from 'apollo-link-http';
 // import ChannelsListQuery from './routes/home/home';
 // import { isTerminating } from 'apollo-link/lib/linkUtils';
 
-const httpLink = createHttpLink({
-  uri: 'http://localhost:4000'
-});
+const cache = new InMemoryCache();
 
+const httpLink = createHttpLink({
+  uri: 'http://localhost:3000'
+});
 
 // const schema = makeExecutableSchema({ typeDefs });
 // addMockFunctionsToSchema({ schema });
 // const mockNetworkInterface = mockNetworkInterfaceWithSchema({ schema });
 
 const client = new ApolloClient({
-    cache: new InMemoryCache(),
+    cache,
     link: httpLink
 });  // Apollo client
 
