@@ -1,7 +1,92 @@
 // Resolvers define the technique for fetching the types in the
 // schema.  We'll retrieve books from the "books" array above.
-// const resolvers = {
-//     Query: {
-//         getProfileList: () => profiles,
-//     },
-// };
+// TESTING DUMMY USERS
+/*
+Use id: Int! when testing non mutation data. if adding Mutation data w/ ID, then use ID!
+query getProfile($id: Int!) {
+    getProfile(id:$id) {
+        id
+        firstname
+        lastname
+        email
+    }
+}
+ */
+var profiles = [
+    // {
+    //     id: 1,
+    //     firstname: 'bob',
+    //     lastname: 'bobberson',
+    //     email: 'bobberson@bob.bob',
+    // },
+    // {
+    //     id: 2,
+    //     firstname: 'Hemjryu',
+    //     lastname: 'Dlong',
+    //     email: 'hdlong@bob.bob',
+    // },
+];
+
+var users = [
+    {
+        id: 1,
+        firstname: 'bob',
+        lastname: 'bobberson',
+        email: 'bobberson@bob.bob',
+        password: 'bobby',
+    },
+    {
+        id: 2,
+        firstname: 'Hemjryu',
+        lastname: 'Dlong',
+        email: 'hdlong@bob.bob',
+        password: 'bobby',
+    },
+];
+
+const getProfileById = ({ id }) => {
+    return Promise.resolve(profiles.find(p => p.id === id));
+}
+
+const signup = ({ firstname, lastname, email, password }) => {
+    var newId = users[users.length-1].id+1;
+    users = [...users, {
+            id: newId,
+            firstname: firstname, 
+            lastname: lastname, 
+            email: email, 
+            password: password 
+        }
+    ];
+
+    profiles = [...profiles, {
+            id: newId,
+            firstname: firstname,
+            lastname: lastname,
+            email: email
+        }
+    ]
+    return Promise.resolve(profiles[profiles.length-1]);
+}
+
+// Export the resolvers here
+exports.resolvers = {
+    Query: {
+        getProfileList: () => profiles,
+        // normally use obj, args, context, info, but most of those params are unneeded right now
+        // getProfile: (parent, args, users, __) => {args.id},    
+        //  Define which param you want from the args: in our case its "id"
+        getProfile: (_, { id }, __, ___) => getProfileById({ id: id }), 
+    },
+    Mutation: {
+        signup: (_, { firstname, lastname, email, password }, __, ___) => signup({
+            firstname: firstname, lastname: lastname, email: email, password: password
+        })
+    },
+    // Profile: {
+    //     id: (parent) => parent.id,
+    //     firstname: (parent) => parent.firstname,
+    //     lastname: (parent) => parent.lastname,
+    //     email: (parent) => parent.email,
+    //   }
+};
