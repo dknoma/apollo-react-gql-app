@@ -69,24 +69,24 @@ const signup = ({ firstname, lastname, email, password }) => {
     return Promise.resolve(profiles[profiles.length-1]);
 }
 
+//
 // Export the resolvers here
+// Query and Mutation format: 
+//
+//      <query/mutation name in schema>: (parent, args, context, info) { <local promise function>({params}) }
+//
 exports.resolvers = {
     Query: {
         getProfileList: () => profiles,
         // normally use obj, args, context, info, but most of those params are unneeded right now
         // getProfile: (parent, args, users, __) => {args.id},    
-        //  Define which param you want from the args: in our case its "id"
+        //      Define which param you want from the args: in our case its "id"
         getProfile: (_, { id }, __, ___) => getProfileById({ id: id }), 
     },
     Mutation: {
+        // Same as above: get these variables from the args param
         signup: (_, { firstname, lastname, email, password }, __, ___) => signup({
             firstname: firstname, lastname: lastname, email: email, password: password
         })
     },
-    // Profile: {
-    //     id: (parent) => parent.id,
-    //     firstname: (parent) => parent.firstname,
-    //     lastname: (parent) => parent.lastname,
-    //     email: (parent) => parent.email,
-    //   }
 };
