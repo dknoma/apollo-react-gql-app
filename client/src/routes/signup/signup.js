@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql, Mutation } from 'react-apollo';
+import { Mutation } from 'react-apollo';
 
 import { SignUpForAccount } from '../../mutations/mutations'
 
@@ -72,7 +72,7 @@ export class SignUp extends React.Component {
         return (
           <div>
            <center> Welcome to the sign up page.</center>
-            {/* <SignUpUser /> */}
+            {/* 4 separate input fields & mutate button */}
             <center><div>
                 <div className="flex flex-column mt3">
                 <input

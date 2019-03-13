@@ -1,6 +1,6 @@
 import React from 'react'
 // import { gql } from 'apollo-boost';
-import { graphql, Query, Mutation } from 'react-apollo';
+import { graphql, Query } from 'react-apollo';
 
 import { GetProfileQuery, GetProfileListQuery } from '../../queries/queries'
 
