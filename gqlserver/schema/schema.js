@@ -3,7 +3,7 @@ const { gql } = require("apollo-server");
 // which ways the data can be fetched from the GraphQL server.
 exports.typeDefs = gql`
 type Query {
-   getProfile(id: ID!): Profile
+   getProfile(id: Int!): Profile
    getProfileList: [Profile]   # "[]" means this is a list of profiles
 }
 
@@ -13,14 +13,14 @@ type Mutation {
 }
 
 type Profile {
-   id: ID!                # "!" denotes a required field
+   id: Int!                # "!" denotes a required field
    firstname: String!
    lastname: String!
    email: String!
 }
 
 type User {
-    id: ID!
+    id: Int!
     firstname: String!
     lastname: String!
     email: String!
@@ -29,6 +29,17 @@ type User {
 `;
 
 // TESTING DUMMY USERS
+/*
+Use id: Int! when testing non mutation data. if adding Mutation data w/ ID, then use ID!
+query getProfile($id: Int!) {
+    getProfile(id:$id) {
+        id
+        firstname
+        lastname
+        email
+    }
+}
+ */
 const profiles = [
     {
         id: 1,
@@ -61,8 +72,8 @@ const users = [
     },
 ];
 
-const getProfileById = ({ profileId }) => {
-    return Promise.resolve(profiles.find(p => p.id === profileId));
+const getProfileById = ({ id }) => {
+    return Promise.resolve(profiles.find(p => p.id === id));
 }
 
 exports.resolvers = {
@@ -70,7 +81,7 @@ exports.resolvers = {
         getProfileList: () => profiles,
         // normally use obj, args, context, info, but most of those params are unneeded right now
         // getProfile: (parent, args, users, __) => {args.id},    
-        getProfile: (_, { id }) => getProfileById({ id: id }), 
+        getProfile: (_, { id }, __, ___) => getProfileById({ id: id }), 
     },
     Profile: {
         id: (parent) => parent.id,
