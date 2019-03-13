@@ -6,9 +6,11 @@ exports.typeDefs = gql`
 type Query {
    getProfile(id: Int!): Profile
    getProfileList: [Profile]   # "[]" means this is a list of profiles
+   getUsers: [User]
 }
 
 type Mutation {
+    # signup(firstname: String!, lastname: String!, email: String!, password: String!): Profile
     signup(firstname: String!, lastname: String!, email: String!, password: String!): Profile
     login(email: String!, password: String!): Profile
 }

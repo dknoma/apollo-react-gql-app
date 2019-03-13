@@ -58,6 +58,7 @@ const signup = ({ firstname, lastname, email, password }) => {
             password: password 
         }
     ];
+    // return Promise.resolve(users[users.length-1]);
 
     profiles = [...profiles, {
             id: newId,
@@ -67,6 +68,10 @@ const signup = ({ firstname, lastname, email, password }) => {
         }
     ]
     return Promise.resolve(profiles[profiles.length-1]);
+}
+
+const getAllUsers = () => {
+    return Promise.resolve(users);
 }
 
 //
@@ -82,6 +87,7 @@ exports.resolvers = {
         // getProfile: (parent, args, users, __) => {args.id},    
         //      Define which param you want from the args: in our case its "id"
         getProfile: (_, { id }, __, ___) => getProfileById({ id: id }), 
+        getUsers: (_, args, __, ___) => getAllUsers(),
     },
     Mutation: {
         // Same as above: get these variables from the args param
