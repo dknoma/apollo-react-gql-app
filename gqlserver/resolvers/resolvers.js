@@ -28,20 +28,20 @@ var profiles = [
 ];
 
 var users = [
-    {
-        id: 1,
-        firstname: 'bob',
-        lastname: 'bobberson',
-        email: 'bobberson@bob.bob',
-        password: 'bobby',
-    },
-    {
-        id: 2,
-        firstname: 'Hemjryu',
-        lastname: 'Dlong',
-        email: 'hdlong@bob.bob',
-        password: 'bobby',
-    },
+    // {
+    //     id: 1,
+    //     firstname: 'bob',
+    //     lastname: 'bobberson',
+    //     email: 'bobberson@bob.bob',
+    //     password: 'bobby',
+    // },
+    // {
+    //     id: 2,
+    //     firstname: 'Hemjryu',
+    //     lastname: 'Dlong',
+    //     email: 'hdlong@bob.bob',
+    //     password: 'bobby',
+    // },
 ];
 
 const getProfileById = ({ id }) => {
@@ -49,7 +49,7 @@ const getProfileById = ({ id }) => {
 }
 
 const signup = ({ firstname, lastname, email, password }) => {
-    var newId = users[users.length-1].id+1;
+    var newId = users.length > 0 ? users[users.length-1].id+1 : 0;
     users = [...users, {
             id: newId,
             firstname: firstname, 
