@@ -1,7 +1,10 @@
 import React from 'react'
-// import { gql } from 'apollo-boost';
+// import NotFound from '../notFound'
+// import { Redirect } from 'react-router-dom'
 import { graphql, Query } from 'react-apollo';
 import { GetProfileQuery, GetProfileListQuery } from '../../queries/queries'
+import ErrorBoundary from '../../components/errorboundary'
+import { isNumberValue } from 'apollo-utilities';
 
 const UserProfile = ({id}) => (
   <Query query={GetProfileQuery} variables={{ id: id}}>
@@ -10,8 +13,11 @@ const UserProfile = ({id}) => (
         if(loading) {
           return <p>Loading...</p>;
         }
+        if(data == null || data.getProfile == null) {
+          throw new Error('404 Not Found');
+        }
         if(error) {
-          return <p>{error.message}</p>;
+          return {error};
         }
         const profile = data.getProfile;
         return (
@@ -100,10 +106,31 @@ export class Profile extends React.Component {
     const id = this.props.match.params.id;
     // console.log(this.props.match.params);
     // console.log(id);
-    const profileId = parseInt(id);
+    var profileId;
+    try {
+      console.log(id)
+      if(!isNumberValue(id)) {
+        profileId = parseInt(id);
+        console.log(profileId)
+      } else {
+        throw new Error('400 Bad Request');
+      }
+    } catch (error) {
+      // this.setState({ error });
+      console.log(error)
+      // return (
+      //   <div>
+      //     <ErrorBoundary>
+      //       error
+      //     </ErrorBoundary>
+      //  </div>
+      // )
+    }
     return (
       <div>
-        {<ProfileWithData id={profileId}/>}
+        <ErrorBoundary>
+          <ProfileWithData id={profileId}/>
+        </ErrorBoundary>
      </div>
     )
   }
