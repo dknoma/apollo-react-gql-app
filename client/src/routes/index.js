@@ -9,6 +9,7 @@ import { SignUp } from './signup/signup';
 import ErrorBoundary from '../components/errorboundary'
 
 // ErrorBoundaries catch any non-event handler queries. Use try/catch for event-handlers (ex. button or onclick events)
+// Can use regex to check query params. Allows app to throw a 400 Bad Request as the url would be invalid
 class AppRouter extends React.Component {
   render() {
     return (

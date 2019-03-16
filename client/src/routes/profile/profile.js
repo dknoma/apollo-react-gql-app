@@ -1,10 +1,8 @@
 import React from 'react'
-// import NotFound from '../notFound'
-// import { Redirect } from 'react-router-dom'
 import { graphql, Query } from 'react-apollo';
+import { isNumberValue } from 'apollo-utilities';
 import { GetProfileQuery, GetProfileListQuery } from '../../queries/queries'
 import ErrorBoundary from '../../components/errorboundary'
-import { isNumberValue } from 'apollo-utilities';
 
 const UserProfile = ({id}) => (
   <Query query={GetProfileQuery} variables={{ id: id}}>
@@ -83,7 +81,8 @@ export class Profiles extends React.Component {
   }
   
   render() {
-    // console.log("PL log: " + this.props)
+    // When rendering components, can use graphql(<query.js query name>)(<function name>) to create the component that
+    //    gets data from graphql
     return (
       <div>
         <ProfileListWithData />
@@ -99,13 +98,15 @@ export class Profile extends React.Component {
     
     this.state = {
       name: '',
+      error: null
     }
   }
   
+  // When rendering a JSX component(that comes from a funciton), can use <paramname>={<parameter>} inside the
+  // JSX tag to pass a parameter to that function. This allows the function to get query URL params and pass
+  // them to graphql to parse.
   render() {
     const id = this.props.match.params.id;
-    // console.log(this.props.match.params);
-    // console.log(id);
     var profileId;
     try {
       console.log(id)
@@ -116,15 +117,9 @@ export class Profile extends React.Component {
         throw new Error('400 Bad Request');
       }
     } catch (error) {
-      // this.setState({ error });
       console.log(error)
-      // return (
-      //   <div>
-      //     <ErrorBoundary>
-      //       error
-      //     </ErrorBoundary>
-      //  </div>
-      // )
+      this.setState({ error });
+      throw new Error('400 Bad Request');
     }
     return (
       <div>

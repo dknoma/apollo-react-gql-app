@@ -8,6 +8,6 @@ const LoadableComponent = Loadable({
   loading: Loading,
 })
 
-const LoadableNotFound = () => <LoadableComponent />
+const LoadableBadRequest = () => <LoadableComponent />
 
-export default LoadableNotFound
+export default LoadableBadRequest
