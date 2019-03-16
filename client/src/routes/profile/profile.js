@@ -1,64 +1,34 @@
 import React from 'react'
 // import { gql } from 'apollo-boost';
 import { graphql, Query } from 'react-apollo';
-
 import { GetProfileQuery, GetProfileListQuery } from '../../queries/queries'
 
-// const ChannelsList = (({ data: {loading, channels, error }}) => {
-// const ProfileList = () => (
-//   <Query query={GetProfileQuery}>
-//     {
-//       ({loading, error, channels}) => {
-//         if(loading) {
-//           return <p>Loading...</p>;
-//         }
-//         if(error) {
-//           return <p>{error.message}</p>;
-//         }
-//         return (
-//           <ul>
-//             { channels.map(channel => {
-//               return <li key={channel.id}>
-//                   {channel.name}
-//                 </li>
-//               }) 
-//             }
-//           </ul>
-//         );
-//       }
-//     }
-//   </Query>
-// );
-
-const UserProfile = () => (
-  <Query query={GetProfileQuery} /*variables={ id }*/>
-    {/* {
-      ({loading, error, profile}) => {
+const UserProfile = ({id}) => (
+  <Query query={GetProfileQuery} variables={{ id: id}}>
+    {
+      ({loading, error, data}) => {
         if(loading) {
           return <p>Loading...</p>;
         }
         if(error) {
           return <p>{error.message}</p>;
         }
+        const profile = data.getProfile;
         return (
-          <ul>{ 
-            profile => {
-              return (
-                <li>
-                    {profile.firstname}
-                </li>,
-                <li>
-                    {profile.lastname}
-                </li>,
-                <li>
-                    {profile.email}
-                </li>
-                )
-            } 
-          }</ul>
+          <ul>
+            <li>
+                {profile.firstname}
+            </li>
+            <li>
+                {profile.lastname}
+            </li>
+            <li>
+                {profile.email}
+            </li>
+          </ul>
         );
       }
-    } */}
+    }
   </Query>
 );
 
@@ -107,7 +77,7 @@ export class Profiles extends React.Component {
   }
   
   render() {
-    console.log("PL log: " + this.props)
+    // console.log("PL log: " + this.props)
     return (
       <div>
         <ProfileListWithData />
@@ -127,11 +97,13 @@ export class Profile extends React.Component {
   }
   
   render() {
-    // console.log(this.props)
-    // const { channels = [] } = this.props.data
+    const id = this.props.match.params.id;
+    // console.log(this.props.match.params);
+    // console.log(id);
+    const profileId = parseInt(id);
     return (
       <div>
-        {<ProfileWithData />}
+        {<ProfileWithData id={profileId}/>}
      </div>
     )
   }
