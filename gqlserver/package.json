@@ -2,13 +2,14 @@
   "name": "gqlserver",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "private": true,
+  "main": "app.js",
   "scripts": {
     "start:dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "dknoma",
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^2.4.8",
