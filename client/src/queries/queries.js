@@ -21,3 +21,23 @@ export const GetProfileListQuery = gql`
     }
   }
 `;
+
+export const GetGithubInfo = gql`
+  query GetGithubInfo {
+    getGithubProfile {
+      owner {
+        login
+        avatar_url
+        url
+        html_url
+        followers_url
+        following_url
+        starred_url
+        company
+        location
+        email
+        bio
+      }
+    }
+  }
+`;

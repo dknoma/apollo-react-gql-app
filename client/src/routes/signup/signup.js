@@ -1,6 +1,7 @@
 import React from 'react'
 import { Mutation } from 'react-apollo';
 import { SignUpForAccount } from '../../mutations/mutations'
+import { Redirect } from 'react-router-dom'
 
 export class SignUp extends React.Component {
     constructor(props) {
@@ -15,9 +16,15 @@ export class SignUp extends React.Component {
             lastnameValid: false,
             emailValid: false,
             passwordValid: false,
+            home: null,
         }
       }
-      
+
+    handleClick = () => {
+        console.log('Button is clicked!');
+        this.setState({ home: '/' });
+    }
+
     // 4 separate input fields & mutate button
     render() {
         const { firstname, lastname, email, password, firstnameValid, lastnameValid, emailValid, passwordValid } = this.state;
@@ -64,7 +71,10 @@ export class SignUp extends React.Component {
                         placeholder="Password"
                     />
                     </div>
-                    <Mutation mutation={SignUpForAccount} variables={{ firstname, lastname, email,  password }}>
+                    <Mutation 
+                        mutation={SignUpForAccount}
+                        variables={{ firstname, lastname, email,  password }}
+                        onCompleted={() => this.props.history.push('/')}>
                         {
                             signup => <button disabled={!isEnabled} onClick={signup}>Submit</button>
                         }
@@ -73,6 +83,7 @@ export class SignUp extends React.Component {
             </div>
         )
         // TODO: redirect to same page, but give error message that fields cant be empty
+        // onCompleted will redirect history over to homepage
     }
 }
 
