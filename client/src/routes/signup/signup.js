@@ -12,23 +12,71 @@ export class SignUp extends React.Component {
             lastname: '',
             email: '',
             password: '',
+            confirmPassword: '',
             firstnameValid: false,
             lastnameValid: false,
             emailValid: false,
             passwordValid: false,
-            home: null,
+            validAccount: false,
+            nameReg: /(?=.*[a-z]|[A-Z])^(?!.*[0-9])^(?!.*[`~!@#$%^&*()_+=[\]\\{}|;':",./<>?])/g,
+            emailReg: /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i,
+            passReg: /(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^])^(?!.*[&*()[\]{}\\|,.<>;:'"`~])/g,
         }
-      }
+    }
 
-    handleClick = () => {
-        console.log('Button is clicked!');
-        this.setState({ home: '/' });
+    // onSubmit = ({ firstname, lastname, email, password}) => {
+    //     this.props.signup({firstname, lastname, email, password}, ()  => {
+    //       this.props.router.push("/");
+    //     });
+    // };
+
+    // handleSubmit = () => {
+    //     const { password, confirmPassword } = this.state;
+    //     // perform all neccassary validations
+    //     if (password !== confirmPassword) {
+    //         alert("Passwords don't match");
+    //     } else {
+    //         // make API call
+    //     }
+    // }
+
+    // handleSubmit(event) {
+    //     event.preventDefault();
+
+    //     const { password } = this.state;
+    //     // var pass = event.target.value;
+    //     var reg = /(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^])^(?!.*[&*()[\]{}\\|,.<>;:'"`~])/g;
+    //     var testPass = reg.test(password);
+    //     if (testPass) {
+    //         alert('pass');
+    //         // this.setState({value: pass});
+    //     } else{ 
+    //         alert('fail');
+    //     }        
+    // }
+
+
+    confirm = async data => {
+
+        if(this.state.nameReg.test(this.state.firstname) && this.state.nameReg.test(this.state.lastname)
+            && this.state.emailReg.test(this.state.email) && this.state.confirmPassword === this.state.password) {
+            // const { token } = this.state.login ? data.login : data.signup
+            // this._saveUserData(token)
+            // this.state.validAccount = true;
+            // this.props.history.push(`/`)
+            return true;
+        } else {
+            // this.state.validAccount = false;
+            console.log("Username or password was invalid. These are the only special characters allowed in a password: !@#$%^-=+_");
+            return false;
+        }
     }
 
     // 4 separate input fields & mutate button
     render() {
-        const { firstname, lastname, email, password, firstnameValid, lastnameValid, emailValid, passwordValid } = this.state;
-        const isEnabled = emailValid && firstnameValid && lastnameValid && passwordValid; // Disable submit button if form not valid
+        const { firstname, lastname, email, password, confirmPassword, firstnameValid, lastnameValid, emailValid, passwordValid } = this.state;
+        const isEnabled = emailValid && firstnameValid && lastnameValid && passwordValid && this.state.password === this.state.confirmPassword; // Disable submit button if form not valid
+        // const isEnabled = true;
         return (
             <div>
                 <center> Welcome to the sign up page.</center>
@@ -65,18 +113,44 @@ export class SignUp extends React.Component {
                         value={password}
                         onChange={e => {
                             this.setState({ password: e.target.value })
-                            this.setState({ passwordValid: e.target.value.match(/(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^])^(?!.*[&*()[\]{}\\|,.<>;:'"`~])/g)})
+                            // console.log(password === confirmPassword)
+                            this.setState({ passwordValid:  e.target.value.match(this.state.passReg)})
                         }}
                         type="text"
                         placeholder="Password"
+                    /><br />
+                    <input
+                        value={confirmPassword}
+                        onChange={e => {
+                            this.setState({ confirmPassword: e.target.value })
+                            // console.log("pc: pass - "+password)
+                            // console.log("pc: confirm - "+confirmPassword)
+                            // console.log(password === confirmPassword)
+                            // this.setState({ passwordValid:  this.state.passReg.test(e.target.value)})
+                        }}
+                        type="text"
+                        placeholder="Confirm password"
                     />
                     </div>
                     <Mutation 
                         mutation={SignUpForAccount}
                         variables={{ firstname, lastname, email,  password }}
-                        onCompleted={() => this.props.history.push('/')}>
+                        onCompleted={data => this.confirm(data)}
+                        >
                         {
-                            signup => <button disabled={!isEnabled} onClick={signup}>Submit</button>
+                            signup => 
+                                // <form  onSubmit={
+                                //     // signup
+                                //     (data) => {
+                                //         console.log(signup)
+                                //         if(this.confirm(data)) {
+                                //             this.props.history.push(`/`)
+                                //             signup.
+                                //         }
+                                //     }
+                                // }>
+                                <button disabled={!isEnabled} onClick={signup}>Submit</button>
+                                // </form>
                         }
                     </Mutation>
                 </div></center>
@@ -84,6 +158,7 @@ export class SignUp extends React.Component {
         )
         // TODO: redirect to same page, but give error message that fields cant be empty
         // onCompleted will redirect history over to homepage
+
     }
 }
 
