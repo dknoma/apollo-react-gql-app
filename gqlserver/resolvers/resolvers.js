@@ -12,6 +12,8 @@ query getProfile($id: Int!) {
     }
 }
  */
+const gRPCClient = require(__dirname + '/../../gRPCClient/client')
+
 var profiles = [
     // {
     //     id: 1,
@@ -48,45 +50,28 @@ const getProfileById = ({ id }) => {
     return Promise.resolve(profiles.find(p => p.id === id));
 }
 
-// const signup = ({ firstname, lastname, email, password }) => {
-//     var newId = users.length > 0 ? users[users.length - 1].id + 1 : 0;
-//     users = [...users, {
-//         id: newId,
-//         email: email,
-//         password: password,
-//         firstname: firstname,
-//         lastname: lastname,
-
-//     }];
-//     // return Promise.resolve(users[users.length-1]);
-
-//     profiles = [...profiles, {
-//         id: newId,
-//         firstname: firstname,
-//         lastname: lastname,
-//         email: email
-//     }]
-//     return Promise.resolve(profiles[profiles.length - 1]);
-// }
-
-
 const signup = ({ firstname, lastname, email, password }) => {
+    const jwt = gRPCClient.SignUp(email, password, firstname, lastname)
+    jwt.then(jwt => console.log(jwt))
+    return jwt
+}
 
-    const userAction = async() => {
-        const response = await fetch('http://localhost:8000/signup', {
-            method: 'POST',
-            body: `{"email":"` + email + `", "password":"` + password + `", "firstname":"` + firstname + `", lasttname":"` + lastname + `"}`, // string or object
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const myJson = await response.json(); //extract JSON from the http response
-        // do something with myJson, will return a json contain id
-    }
+const login = ({ email, password }) => {
+    const jwt = gRPCClient.LogIn(email, password)
+    jwt.then(jwt => console.log(jwt))
+    return jwt
 }
 
 const getAllUsers = () => {
     return Promise.resolve(users);
+}
+
+const getGitHubInfo = (id) => {
+    const user = gRPCClient.GetGithubInfo(id)
+    // console.log("what", user)
+    // const res = Promise.resolve(user)
+    // console.log("res = " + res)
+    return user;
 }
 
 //
@@ -101,16 +86,18 @@ exports.resolvers = {
         // normally use obj, args, context, info, but most of those params are unneeded right now
         // getProfile: (parent, args, users, __) => {args.id},    
         //      Define which param you want from the args: in our case its "id"
-        getProfile: (_, { id }, __, ___) => getProfileById({ id: id }),
-        getUsers: (_, args, __, ___) => getAllUsers(),
+        getProfile: (_, { id }, __, ___) => getProfileById({ id: id }), 
+        getUsers: (_, args, __, ___) => getAllUsers(), 
+        getGitHubUser: (_, { id }, __, ___) => getGitHubInfo(id),
     },
     Mutation: {
         // Same as above: get these variables from the args param
         signup: (_, { firstname, lastname, email, password }, __, ___) => signup({
-            firstname: firstname,
-            lastname: lastname,
-            email: email,
-            password: password
+            firstname: firstname, lastname: lastname, email: email, password: password
+        }),
+
+        login: (_, { email, password }, __, ___) => login({
+            email: email, password: password
         })
     },
 };
