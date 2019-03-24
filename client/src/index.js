@@ -7,8 +7,15 @@ import { ApolloClient } from 'apollo-boost';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloProvider } from 'react-apollo';
 import { createHttpLink } from 'apollo-link-http';
+import 'react-mdl/extra/material.css';
+import 'react-mdl/extra/material.js';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 // Routes
-import AppRouter from './routes'
+import App from './App';
+import AppRouter from './routes';
+import { BrowserRouter as Router } from 'react-router-dom'
 
 const cache = new InMemoryCache();
 // const apolloClientLink = new HttpLink({ uri: 'http://localhost:9090/graphql' })
@@ -26,7 +33,9 @@ const client = new ApolloClient({
 // Add apollo to our app
 ReactDOM.render(
   <ApolloProvider client={client}>
-    <AppRouter />
+    <Router>
+      <App />
+    </Router>
   </ApolloProvider>,
   document.getElementById('app')
 );

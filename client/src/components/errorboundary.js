@@ -3,7 +3,7 @@ import React from 'react'
 // This component is what will be used to do error checking for any rendering component
 // This does not work for event handlers, which a try/catch will suffice for. Throwing
 // an error from the event handler can be taken care of by a higher level ErrorBoundary.
-class ErrorBoundary extends React.Component {
+export class ErrorBoundary extends React.Component {
     constructor(props) {
         super(props);
         this.state = { error: null, errorInfo: null };

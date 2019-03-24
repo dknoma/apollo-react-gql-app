@@ -1,23 +1,34 @@
 import React from 'react'
-// // import { gql } from 'apollo-boost';
-// import { graphql, Query } from 'react-apollo';
+import { Redirect } from 'react-router-dom'
 
 // Home component
 class Home extends React.Component {
-  // constructor(props) {
-  //   super(props)
+  constructor(props) {
+    super(props)
     
-  //   this.state = {
-  //     name: '',
-  //   }
-  // }
+    this.state = {
+      redirect: false
+    }
+  }
+
+  setRedirect = () => {
+    this.setState({
+      redirect: true
+    })
+  }
+
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/signup' />
+    }
+  }
   
   render() {
-    // console.log(this.props)
-    // const { channels = [] } = this.props.data
     return (
       <div>
-        Welcome Home, Anon!
+        <center>
+          Welcome Home, Anon!
+        </center>
      </div>
     )
   }
