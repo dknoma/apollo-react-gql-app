@@ -10,7 +10,7 @@ class UserCard extends Component {
           <article className="dt w-100 b--black-05 pb2 mt2" href="#0">
             <div className="dtc w2 w3-ns v-mid">
               <Link to={{
-                pathname: "/profiles/0",
+                pathname: "/profiles/" + this.props.userId,
                 state: {
                   userImage: this.props.userImage
                 }

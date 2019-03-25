@@ -18,6 +18,10 @@ class Stats extends Component {
           <dd className="fw1 f5 b tc" style={pStyle}>3</dd>
         </dl>
         <dl className="dib mr3">
+          <dd className="f2 f5-ns b ml1 mid-gray">Public Repositories</dd>
+          <dd className="fw1 f5 ml0 b tc" style={pStyle}>{this.props.user.public_repos}</dd>
+        </dl> 
+        <dl className="dib mr3">
           <dd className="f2 f5-ns b ml1 mid-gray">Lines of code</dd>
           <dd className="fw1 f5 ml0 b tc" style={pStyle}>92,193</dd>
         </dl> 
