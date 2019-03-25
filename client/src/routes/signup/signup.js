@@ -1,7 +1,7 @@
 import React from 'react'
 import { Mutation } from 'react-apollo';
 import { SignUpForAccount } from '../../mutations/mutations'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 
 export class SignUp extends React.Component {
     constructor(props) {
@@ -17,12 +17,18 @@ export class SignUp extends React.Component {
             lastnameValid: false,
             emailValid: false,
             passwordValid: false,
-            validAccount: false,
+            home: null,
             nameReg: /(?=.*[a-z]|[A-Z])^(?!.*[0-9])^(?!.*[`~!@#$%^&*()_+=[\]\\{}|;':",./<>?])/g,
             emailReg: /^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i,
             passReg: /(?=.{8,})(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^])^(?!.*[&*()[\]{}\\|,.<>;:'"`~])/g,
+            errorMessage: '',
         }
     }
+
+    // handleClick = () => {
+    //     console.log('Button is clicked!');
+    //     this.setState({ home: '/' });
+    // }
 
     // onSubmit = ({ firstname, lastname, email, password}) => {
     //     this.props.signup({firstname, lastname, email, password}, ()  => {
@@ -54,23 +60,21 @@ export class SignUp extends React.Component {
     //         alert('fail');
     //     }        
     // }
+    // confirm = async data => {
 
-
-    confirm = async data => {
-
-        if(this.state.nameReg.test(this.state.firstname) && this.state.nameReg.test(this.state.lastname)
-            && this.state.emailReg.test(this.state.email) && this.state.confirmPassword === this.state.password) {
-            // const { token } = this.state.login ? data.login : data.signup
-            // this._saveUserData(token)
-            // this.state.validAccount = true;
-            // this.props.history.push(`/`)
-            return true;
-        } else {
-            // this.state.validAccount = false;
-            console.log("Username or password was invalid. These are the only special characters allowed in a password: !@#$%^-=+_");
-            return false;
-        }
-    }
+    //     if(this.state.nameReg.test(this.state.firstname) && this.state.nameReg.test(this.state.lastname)
+    //         && this.state.emailReg.test(this.state.email) && this.state.confirmPassword === this.state.password) {
+    //         // const { token } = this.state.login ? data.login : data.signup
+    //         // this._saveUserData(token)
+    //         // this.state.validAccount = true;
+    //         this.props.history.push(`/`)
+    //         // return true;
+    //     } else {
+    //         // this.state.validAccount = false;
+    //         console.log("Username or password was invalid. These are the only special characters allowed in a password: !@#$%^-=+_");
+    //         // return false;
+    //     }
+    // }
 
     // 4 separate input fields & mutate button
     render() {
@@ -86,7 +90,7 @@ export class SignUp extends React.Component {
                         value={firstname}
                         onChange={e => {
                             this.setState({ firstname: e.target.value })
-                            this.setState({ firstnameValid: e.target.value.match(/(?=.*[a-z]|[A-Z])^(?!.*[0-9])^(?!.*[`~!@#$%^&*()_+=[\]\\{}|;':",./<>?])/g)})
+                            this.setState({ firstnameValid: e.target.value.match(this.state.nameReg)})
                         }}
                         type="text"
                         placeholder="First name."
@@ -95,7 +99,7 @@ export class SignUp extends React.Component {
                         value={lastname}
                         onChange={e => {
                             this.setState({ lastname: e.target.value })
-                            this.setState({ lastnameValid: e.target.value.match(/(?=.*[a-z]|[A-Z])^(?!.*[0-9])^(?!.*[`~!@#$%^&*()_+=[\]\\{}|;':",./<>?])/g)})
+                            this.setState({ lastnameValid: e.target.value.match(this.state.nameReg)})
                         }}
                         type="text"
                         placeholder="Last name."
@@ -104,7 +108,7 @@ export class SignUp extends React.Component {
                         value={email}
                         onChange={e => {
                             this.setState({ email: e.target.value })
-                            this.setState({ emailValid: e.target.value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)})
+                            this.setState({ emailValid: e.target.value.match(this.state.emailReg)})
                         }}
                         type="text"
                         placeholder="Email."
@@ -113,46 +117,40 @@ export class SignUp extends React.Component {
                         value={password}
                         onChange={e => {
                             this.setState({ password: e.target.value })
-                            // console.log(password === confirmPassword)
                             this.setState({ passwordValid:  e.target.value.match(this.state.passReg)})
                         }}
-                        type="text"
+                        type="password"
                         placeholder="Password"
                     /><br />
                     <input
                         value={confirmPassword}
                         onChange={e => {
                             this.setState({ confirmPassword: e.target.value })
-                            // console.log("pc: pass - "+password)
-                            // console.log("pc: confirm - "+confirmPassword)
-                            // console.log(password === confirmPassword)
-                            // this.setState({ passwordValid:  this.state.passReg.test(e.target.value)})
                         }}
-                        type="text"
+                        type="password"
                         placeholder="Confirm password"
                     />
                     </div>
                     <Mutation 
                         mutation={SignUpForAccount}
                         variables={{ firstname, lastname, email,  password }}
-                        onCompleted={data => this.confirm(data)}
-                        >
+                        onError={ (error) => {
+                            console.log(error)
+                            this.setState({ errorMessage: "Email was already taken." });
+                        }}
+                        onCompleted={(signup) => {
+                            // console.log(signup)
+                            // console.log(signup.signup)
+                            localStorage.setItem('u', signup.signup.Jwt)
+                            this.props.history.push('/')
+                        }}
+                    >
                         {
-                            signup => 
-                                // <form  onSubmit={
-                                //     // signup
-                                //     (data) => {
-                                //         console.log(signup)
-                                //         if(this.confirm(data)) {
-                                //             this.props.history.push(`/`)
-                                //             signup.
-                                //         }
-                                //     }
-                                // }>
-                                <button disabled={!isEnabled} onClick={signup}>Submit</button>
-                                // </form>
+                            signup => <button disabled={!isEnabled} onClick={signup}>Submit</button>
                         }
                     </Mutation>
+                    <br />
+                    {this.state.errorMessage}
                 </div></center>
             </div>
         )

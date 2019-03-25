@@ -1,5 +1,16 @@
 import { gql } from 'apollo-boost'
 
+export const GetUser = gql`
+  query GetUser($jwt: String) {
+    getUser(jwt: $jwt) {
+      id
+      firstname
+      lastname
+      email
+    }
+  }
+`;
+
 export const GetProfileQuery = gql`
   query GetProfileQuery($id: Int!) {
     getProfile(id: $id) {

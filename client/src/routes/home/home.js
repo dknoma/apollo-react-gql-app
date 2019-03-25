@@ -1,5 +1,9 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
+import { graphql, Query } from 'react-apollo';
+import { isNumberValue } from 'apollo-utilities';
+import { GetUser } from '../../queries/queries'
+import ErrorBoundary from '../../components/ErrorHandlers/errorboundary'
 
 // Home component
 class Home extends React.Component {
@@ -7,7 +11,7 @@ class Home extends React.Component {
     super(props)
     
     this.state = {
-      redirect: false
+      redirect: false,
     }
   }
 
@@ -24,6 +28,8 @@ class Home extends React.Component {
   }
   
   render() {
+    var tok = localStorage.getItem('u');
+    console.log("tokeywokey: " + tok)
     return (
       <div>
         <center>

@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql, Query } from 'react-apollo';
 import { isNumberValue } from 'apollo-utilities';
 import { GetProfileQuery, GetProfileListQuery } from '../../queries/queries'
-import ErrorBoundary from '../../components/errorboundary'
+import ErrorBoundary from '../../components/ErrorHandlers/errorboundary'
 
 const UserProfile = ({id}) => (
   <Query query={GetProfileQuery} variables={{ id: id}}>

@@ -11,9 +11,6 @@ import {
   Textfield
 } from "react-mdl";
 import Footer from "./components/Footer/footer";
-// import ResponsiveDrawer from './components/ResponsiveDrawer/responsivedrawer'
-// import { AppBar } from "@material-ui/core";
-// import { SearchAppBar } from './components/appbar/appbar';
 import AppRouter from "./routes";
 
 class App extends Component {
@@ -21,35 +18,37 @@ class App extends Component {
     return (
       <div className="demo-big-content">
         <Layout>
-          <Header className="db dt-l w-100 border-box pa3 ph5-l">
-              <HeaderRow
-                title={
-                  <Link style={{ textDecoration: "none", color: "white" }} to="/">
-                    Showcase
-                  </Link>
-                }
-              >
-                <Link style={{ margin: `10px`, textDecoration: "none", color: "white" }} to="/signup">
-                  {" "}
-                  Sign Up{" "}
-                </Link>
-                <Link style={{ margin: `10px`, textDecoration: "none", color: "white" }} to="/">
-                  {" "}
-                  Log In{" "}
-                </Link>
-                <Textfield
-                  value=""
-                  onChange={() => {}}
-                  label="Search2"
-                  expandable
-                  expandableIcon="search"
-                />
-              </HeaderRow>
-          </Header>
-          <Drawer title="TeeanRonson">
-              <Navigation>
-                <Link to="/MyProfile">MyProfile</Link>
-              </Navigation>
+        <Drawer>
+            <Navigation>
+              <Link to="/">
+                <i class="fas fa-home mr4"></i>
+                Home
+              </Link>
+            </Navigation>
+            <Navigation>
+              <Link to="/Explore">
+                <i class="fas fa-star mr4"></i>
+                Explore
+              </Link>
+            </Navigation>
+            <Navigation>
+              <Link to="/Explore">
+                <i class="fas fa-fire mr4"></i>
+                Trending
+              </Link>
+            </Navigation>
+            <Navigation>
+              <Link to="/Explore">
+                <i class="far fa-paper-plane mr4"></i>
+                Connections
+              </Link>
+            </Navigation>
+            <Navigation>
+              <Link to="/Explore">
+                <i className="fas fa-users mr4"></i>
+                Groups
+              </Link>
+            </Navigation>
           </Drawer>
           <Content>
             <div className="page-content" />
