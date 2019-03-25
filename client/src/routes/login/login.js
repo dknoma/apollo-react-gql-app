@@ -7,6 +7,7 @@ export class Login extends React.Component {
         super(props)
         
         this.state = {
+            data: '',
             email: '',
             password: '',
             errorMessage: '',
@@ -49,8 +50,10 @@ export class Login extends React.Component {
                             // this.props.history.push('/login')
                         }}
                         onCompleted={ data => {
-                            console.log("setting tok" + data.login.Jwt)
-                            localStorage.setItem('u', data.login.Jwt)
+                            var tok = data.login.Jwt;
+                            console.log("setting tok: " + tok)
+                            localStorage.setItem('data', tok)
+                            this.setState({ data: tok });
                             this.setState({ errorMessage: "" });
                             this.props.history.push('/')
                         }}

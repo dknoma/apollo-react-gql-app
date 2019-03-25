@@ -15,7 +15,7 @@ export class NavBar extends Component {
     }
 	render() {
 		console.log(this.props.location);
-		var data = localStorage.getItem('u');
+		var data = localStorage.getItem('data');
 		console.log("data: " + data);
 		if(data === null || data === undefined) {
 			return (
@@ -55,7 +55,10 @@ export class NavBar extends Component {
 					}
 				>
 				<Link style={{ margin: `10px`, textDecoration: "none", color: "white" }} 
-					onClick={localStorage.removeItem("u")} to="/">
+					onClick={ () => {
+						console.log("LOGGING OUT")
+						localStorage.removeItem('data')
+					}} to="/">
 					{" "}
 					Log Out{" "}
 				</Link>

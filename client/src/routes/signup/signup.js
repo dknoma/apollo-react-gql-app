@@ -8,6 +8,7 @@ export class SignUp extends React.Component {
         super(props)
         
         this.state = {
+            data: '',
             firstname: '',
             lastname: '',
             email: '',
@@ -139,9 +140,9 @@ export class SignUp extends React.Component {
                             this.setState({ errorMessage: "Email was already taken." });
                         }}
                         onCompleted={(signup) => {
-                            // console.log(signup)
-                            // console.log(signup.signup)
-                            localStorage.setItem('u', signup.signup.Jwt)
+                            var tok = signup.signup.Jwt;
+                            localStorage.setItem('data', tok)
+                            this.setState({ data: tok });
                             this.props.history.push('/')
                         }}
                     >

@@ -3,12 +3,9 @@ import "./App.css";
 import { Link } from 'react-router-dom'
 import {
   Layout,
-  Header,
   Navigation,
   Drawer,
   Content,
-  HeaderRow,
-  Textfield
 } from "react-mdl";
 import Footer from "./components/Footer/footer";
 import AppRouter from "./routes";
@@ -21,25 +18,25 @@ class App extends Component {
         <Drawer>
             <Navigation>
               <Link to="/">
-                <i class="fas fa-home mr4"></i>
+                <i className="fas fa-home mr4"></i>
                 Home
               </Link>
             </Navigation>
             <Navigation>
               <Link to="/Explore">
-                <i class="fas fa-star mr4"></i>
+                <i className="fas fa-star mr4"></i>
                 Explore
               </Link>
             </Navigation>
             <Navigation>
               <Link to="/Explore">
-                <i class="fas fa-fire mr4"></i>
+                <i className="fas fa-fire mr4"></i>
                 Trending
               </Link>
             </Navigation>
             <Navigation>
               <Link to="/Explore">
-                <i class="far fa-paper-plane mr4"></i>
+                <i className="far fa-paper-plane mr4"></i>
                 Connections
               </Link>
             </Navigation>
