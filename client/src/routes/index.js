@@ -8,8 +8,8 @@ import { Profile, Profiles } from './profile/profile'
 import BadRequest from './badrequest'
 import { SignUp } from './signup/signup';
 import { Login } from './login/login';
-import { ErrorBoundary } from '../components/ErrorHandlers/errorboundary'
 import { NavBar } from "../components/NavBar/navbar"
+import SingleProfile from '../components/SingleProfile/singleprofile';
 import MyProfile from '../components/MyProfile/MyProfile';
 import Explore from '../components/Explore/explore';
 
@@ -18,21 +18,20 @@ import Explore from '../components/Explore/explore';
 class AppRouter extends React.Component {
   render() {
     return (
-      <ErrorBoundary>
         <div>
           <Route component={NavBar} /* Always render this component*//>
           <Switch>
             <Route exact path={'/'} component={Home} /* Home route *//>
             <Route exact path={'/profiles'} component={Profiles} /* Profile list route *//>
-            <Route exact path={'/profiles/:id(\\d+)'} component={Profile} /* Profile route *//>
+            <Route exact path={'/profiles/:id(\\d+)'} component={SingleProfile} /* Profile route *//>
             <Route exact path={'/signup'} component={SignUp} /* Profile route *//>
             <Route exact path={'/login'} component={Login} /* Profile route *//>
             <Route exact path="/MyProfile" component={MyProfile}/>
+            {/* <Route path="/profile" component={SingleProfile}/> */}
             <Route path="/Explore" component={Explore}/>
             <Route path="*" component={BadRequest} />
           </Switch>
         </div>
-      </ErrorBoundary>
     )
   }
 }

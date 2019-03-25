@@ -7,18 +7,35 @@ import Skills from "../Skills/skills";
 import Experience from "../Experience/experience";
 import Projects from "../Projects/projects";
 
+// TODO: Query profile here, pass as props to rest of components
 class SingleProfile extends Component {
   render() {
-    return (
-      <div>
+    if(this.props.location.state === undefined || this.props.location.state === null) {
+      //TODO: query by the userid
+      console.log("Need to query user id");
+      return (
         <div>
-          <AboutHeader/>
-          <Summary/>
-          <Skills/>
-          <Projects/>
+          <div>
+            <AboutHeader userImage={this.props.location.state.userImage}/>
+            <Summary/>
+            <Skills/>
+            <Projects/>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      console.log("reeee: " + this.props.location.state.userImage);
+      return (
+        <div>
+          <div>
+            <AboutHeader userImage={this.props.location.state.userImage}/>
+            <Summary/>
+            <Skills/>
+            <Projects/>
+          </div>
+        </div>
+      );
+    }
   }
 }
 export default SingleProfile;

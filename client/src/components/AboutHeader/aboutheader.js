@@ -6,7 +6,7 @@ class AboutHeader extends Component {
       <div className="bg-grey pb3">
         <div className="tc pa4" style={{ textAlign: "center" }}>
           <img
-            src="https://media.licdn.com/dms/image/C5603AQEzDobK9kQ_ow/profile-displayphoto-shrink_200_200/0?e=1557964800&v=beta&t=ADTJOYvDlT5mTl3Ncz97-bwDAVJE4FXwykRh0RDOt60"
+            src={this.props.userImage}
             className="br-100 pa1 ba b--black-10 h3 w3"
             alt="profile"
           />

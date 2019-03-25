@@ -3,6 +3,15 @@ import UserCard from '../UserCard/usercard'
 import CurrentUserInfo from '../CurrentUserInfo/currentUserInfo';
 
 class Home extends Component {
+  constructor(props) {
+      super(props)
+      
+      this.state = {
+      }
+  }
+  // get images and names from query
+  // this.props.userImage
+  // this.props.username
   render() {
     return (
     <div className="w-80 center">		

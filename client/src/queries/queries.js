@@ -7,6 +7,8 @@ export const GetUser = gql`
       firstname
       lastname
       email
+      title
+      location
     }
   }
 `;

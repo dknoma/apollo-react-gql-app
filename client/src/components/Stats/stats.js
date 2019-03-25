@@ -8,18 +8,18 @@ class Stats extends Component {
 	};  
 	  
     return (
-      <article class="mt2" data-name="slab-stat">
-        <dl class="dib mr3">
-          <dd class="f2 f5-ns b mid-gray">Connections</dd>
-          <dd class="fw1 f5 ml0 b tc" style={pStyle}>4</dd>
+      <article className="mt2" data-name="slab-stat">
+        <dl className="dib mr3">
+          <dd className="f2 f5-ns b mid-gray">Connections</dd>
+          <dd className="fw1 f5 ml0 b tc" style={pStyle}>4</dd>
         </dl>
-        <dl class="dib mr3">
-          <dd class="f2 f5-ns b mid-gray">Featured Projects</dd>
-          <dd class="fw1 f5 b tc" style={pStyle}>3</dd>
+        <dl className="dib mr3">
+          <dd className="f2 f5-ns b mid-gray">Featured Projects</dd>
+          <dd className="fw1 f5 b tc" style={pStyle}>3</dd>
         </dl>
-        <dl class="dib mr3">
-          <dd class="f2 f5-ns b ml1 mid-gray">Lines of code</dd>
-          <dd class="fw1 f5 ml0 b tc" style={pStyle}>92,193</dd>
+        <dl className="dib mr3">
+          <dd className="f2 f5-ns b ml1 mid-gray">Lines of code</dd>
+          <dd className="fw1 f5 ml0 b tc" style={pStyle}>92,193</dd>
         </dl> 
       </article>
     );

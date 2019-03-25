@@ -2,21 +2,23 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
 class UserCard extends Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
-    const colStyle = { maxWidth: "22rem" };
-
+    // const colStyle = { maxWidth: "22rem" };
     return (
       <section className="ba mt1 b--black-10 br3 pa2">
         <main className="mw8 center">
           <article className="dt w-100 b--black-05 pb2 mt2" href="#0">
             <div className="dtc w2 w3-ns v-mid">
-              <Link to="/SingleProfile">
+              <Link to={{
+                pathname: "/profiles/0",
+                state: {
+                  userImage: this.props.userImage
+                }
+              }}>
                 <img
                   className="ba b--black-10 db br-100 w2 w3-ns h2 h3-ns"
                   src={this.props.userImage}
+                  alt="profile"
                 />
               </Link>
             </div>

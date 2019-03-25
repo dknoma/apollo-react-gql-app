@@ -16,12 +16,12 @@ class Skills extends Component {
         </div>
         <article className="w-100 dib-ns w-auto-ns mr4-m mr5-l pr2 pr0-ns tc center">
           <div>
-            <dl class="lh-title pa4 mt0 m-auto">
-              <dd class="ml0 fw5 f5 dib mr4"><Logo name="GO" width={20} className="mr2"/> Golang</dd>
-              <dd class="ml0 fw5 f5 dib mr4"><Logo name="C" width={20} className="mr2"/> C </dd>
-              <dd class="ml0 fw5 f5 dib mr4"><Logo name="HTML" width={20} className="mr2"/> HTML5</dd>
-              <dd class="ml0 fw5 f5 dib mr4"><Logo name="Java" width={20} className="mr2"/> Java</dd>
-              <dd class="ml0 fw5 f5 dib mr4"><Logo name="Python" width={20} className="mr2"/> Python</dd>
+            <dl className="lh-title pa4 mt0 m-auto">
+              <dd className="ml0 fw5 f5 dib mr4"><Logo name="GO" width={20} className="mr2"/> Golang</dd>
+              <dd className="ml0 fw5 f5 dib mr4"><Logo name="C" width={20} className="mr2"/> C </dd>
+              <dd className="ml0 fw5 f5 dib mr4"><Logo name="HTML" width={20} className="mr2"/> HTML5</dd>
+              <dd className="ml0 fw5 f5 dib mr4"><Logo name="Java" width={20} className="mr2"/> Java</dd>
+              <dd className="ml0 fw5 f5 dib mr4"><Logo name="Python" width={20} className="mr2"/> Python</dd>
             </dl>
           </div>
         </article>
