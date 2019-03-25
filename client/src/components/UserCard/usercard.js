@@ -9,11 +9,11 @@ class UserCard extends Component {
     const colStyle = { maxWidth: "22rem" };
 
     return (
-      <section>
+      <section className="ba mt1 b--black-10 br3 pa2">
         <main className="mw8 center">
-          <article className="dt w-100 bb b--black-05 pb2 mt2" href="#0">
+          <article className="dt w-100 b--black-05 pb2 mt2" href="#0">
             <div className="dtc w2 w3-ns v-mid">
-              <Link to="/MyProfile">
+              <Link to="/SingleProfile">
                 <img
                   className="ba b--black-10 db br-100 w2 w3-ns h2 h3-ns"
                   src={this.props.userImage}
@@ -22,7 +22,7 @@ class UserCard extends Component {
             </div>
             <div className="dtc v-mid pl3">
               <h1 className="f6 f5-ns fw6 lh-title mv0">{this.props.username}</h1>
-              <h2 className="f6 fw4 mt0 mb0 black-60">{this.props.tag}</h2>
+              <p className="f6 fw4 mt0 mb0 black-60"> MS Computer Science, USF </p>
             </div>
             <div className="dtc v-mid">
               <form className="w-100 tr">

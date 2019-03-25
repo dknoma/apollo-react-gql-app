@@ -26,6 +26,10 @@
     font-size: .875rem;
 }
 
+.font-blue {
+	color: #2196f3;
+}
+
 @media screen and (min-width: 30em) {
     .pa5-ns {
         padding: 4rem;

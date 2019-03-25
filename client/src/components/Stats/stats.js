@@ -1,25 +1,26 @@
 import React, {Component}  from 'react';
 
+
 class Stats extends Component {
   render() {
+    const pStyle = {
+	  color: '#d74a4a',
+	};  
+	  
     return (
-      <article class="pa3 pa3-ns ml0" data-name="slab-stat">
+      <article class="mt2" data-name="slab-stat">
         <dl class="dib mr3">
-          <dd class="f2 f5-ns b ml1">Closed Issues</dd>
-          <dd class="f3 f2-ns b ml0">1,024</dd>
+          <dd class="f2 f5-ns b mid-gray">Connections</dd>
+          <dd class="fw1 f5 ml0 b tc" style={pStyle}>4</dd>
         </dl>
         <dl class="dib mr3">
-          <dd class="f6 f5-ns b ml0">Open Issues</dd>
-          <dd class="f3 f2-ns b ml0">993</dd>
+          <dd class="f2 f5-ns b mid-gray">Featured Projects</dd>
+          <dd class="fw1 f5 b tc" style={pStyle}>3</dd>
         </dl>
         <dl class="dib mr3">
-          <dd class="f6 f5-ns b ml0">Next Release</dd>
-          <dd class="f3 f2-ns b ml0">10-22</dd>
-        </dl>
-        <dl class="dib mr3">
-          <dd class="f6 f5-ns b ml0">Days Left</dd>
-          <dd class="f3 f2-ns b ml0">4</dd>
-        </dl>
+          <dd class="f2 f5-ns b ml1 mid-gray">Lines of code</dd>
+          <dd class="fw1 f5 ml0 b tc" style={pStyle}>92,193</dd>
+        </dl> 
       </article>
     );
   }

@@ -1,35 +1,72 @@
-.experience .jobs {
-  margin-bottom: 100px;
+.db {
+  display: block;
 }
 
-.experience .job {
-  margin-bottom: 25px;
+.dib {
+  display: inline-block;
 }
 
-.experience .job .time-place {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+.h2 {
+  height: 2rem;
 }
 
-.experience .job__company {
-  font-weight: 700;
+.link {
+  text-decoration: none;
+  transition: color .15s ease-in;
 }
 
-.experience .job__time {
-  font-size: 0.9rem;
-  font-family: 'Inconsolata', monospace;
+.link:link, .link:visited {
+  transition: color .15s ease-in;
 }
 
-.experience .arrow-link {
-  font-size: 1.25rem;
+.link:hover {
+  transition: color .15s ease-in;
 }
 
-.experience .arrow-link:after {
-  width: 20px;
-  height: 20px;
+.link:active {
+  transition: color .15s ease-in;
 }
-/*# sourceMappingURL=skills.css.map */
+
+.link:focus {
+  transition: color .15s ease-in;
+  outline: 1px dotted currentColor;
+}
+
+.w2 {
+  width: 2rem;
+}
+
+.near-black {
+  color: #111;
+}
+
+.hover-silver:hover {
+  color: #999;
+}
+
+.hover-silver:focus {
+  color: #999;
+}
+
+.pv4 {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.ph3 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.mh3 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.tc {
+  text-align: center;
+}
+
+.f6 {
+  font-size: .875rem;
+}
