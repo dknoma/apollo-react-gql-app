@@ -14,9 +14,9 @@ export class GitHubAuth extends Component {
         }
     }
 	render() {
-		console.log(this.props.location);
-		var data = localStorage.getItem('data');
-		console.log("data: " + data);
+		// console.log(this.props.location);
+		// var data = localStorage.getItem('data');
+		// console.log("data: " + data);
 		return (
 			<div><center>
 				<button id="gitauth">

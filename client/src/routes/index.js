@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 // Routes
 import Home from '../components/Home/home'
-import { Profile, Profiles } from './profile/profile'
+// import { Profile, Profiles } from './profile/profile'
 import BadRequest from './badrequest'
 import { SignUp } from './signup/signup';
 import { Login } from './login/login';

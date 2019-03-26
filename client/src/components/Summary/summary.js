@@ -12,7 +12,7 @@ class Summary extends Component {
 	  <div className="flex mt-1">
 	    <div className="w-50 bg-grey mr-1 tc center pt4">
 		    <header className="w-100">
-		      <h1 className="f3 lh-title fw9 mb1 mt0 pt3 bw2">We Don’t Need The Best People, We Need The</h1>
+		      <h1 className="f3 lh-title fw9 mb1 mt0 pt3 bw2">Contacts and Stats</h1>
 		      <Links user={this.props.user}/>
 		      <Stats user={this.props.user}/>
 		    </header>

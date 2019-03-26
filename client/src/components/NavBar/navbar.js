@@ -14,9 +14,9 @@ export class NavBar extends Component {
         }
     }
 	render() {
-		console.log(this.props.location);
+		// console.log(this.props.location);
 		var data = localStorage.getItem('data');
-		console.log("data: " + data);
+		// console.log("data: " + data);
 		if(data === null || data === undefined) {
 			return (
 				<Header className="db dt-l w-100 border-box pa3 ph5-l bg-nav">

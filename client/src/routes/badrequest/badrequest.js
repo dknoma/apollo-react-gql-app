@@ -1,5 +1,5 @@
 import React from 'react'
-import ErrorBoundary from '../../components/ErrorHandlers/errorboundary'
+// import ErrorBoundary from '../../components/ErrorHandlers/errorboundary'
 
 // Custom error page
 

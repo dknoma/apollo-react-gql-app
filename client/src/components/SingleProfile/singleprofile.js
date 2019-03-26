@@ -13,9 +13,9 @@ import { GetGitHubUser, GetGitHubUserById } from '../../queries/queries';
 class SingleProfile extends Component {
   render() {
     const userId = parseInt(this.props.match.params.id);
-    console.log("userId: " + userId);
+    // console.log("userId: " + userId);
 
-		var myData = localStorage.getItem('data');
+		// var myData = localStorage.getItem('data');
     // console.log("mytok: " + myData)
     return (
       <div>
@@ -35,7 +35,7 @@ class SingleProfile extends Component {
                       // return {error};
                   }
                   const gitHubUser = data.getGitHubUserById
-                  console.log("gitttt: " + gitHubUser)
+                  // console.log("gitttt: " + gitHubUser)
                   return(
                     <div>
                       <AboutHeader user={gitHubUser}/>

@@ -9,7 +9,7 @@ import {
 } from "react-mdl";
 import Footer from "./components/Footer/footer";
 import AppRouter from "./routes";
-import { ErrorBoundary } from './components/ErrorHandlers/errorboundary'
+// import { ErrorBoundary } from './components/ErrorHandlers/errorboundary'
 
 class App extends Component {
   render() {
