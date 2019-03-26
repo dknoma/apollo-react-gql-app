@@ -51,11 +51,10 @@ export class Login extends React.Component {
                         }}
                         onCompleted={ data => {
                             var tok = data.login.Jwt;
-                            console.log("setting tok: " + tok)
                             localStorage.setItem('data', tok)
                             this.setState({ data: tok });
                             this.setState({ errorMessage: "" });
-                            this.props.history.push('/')
+                            this.props.history.push('/githubauth')
                         }}
                     >
                         {

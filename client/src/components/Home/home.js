@@ -28,9 +28,15 @@ class Home extends Component {
           />
 	        <UserCard 
             userId="1"
-            userImage="https://media.licdn.com/dms/image/C5103AQFUDEb2cNAa2w/profile-displayphoto-shrink_800_800/0?e=1557964800&amp;v=beta&amp;t=vT3AyR_DCCHg2iIHGtiK6uEsEeegnPqDcpPkUj6i26U&quot)"
+            userImage="https://media.licdn.com/dms/image/C5103AQFUDEb2cNAa2w/profile-displayphoto-shrink_800_800/0?e=1557964800&v=beta&t=vT3AyR_DCCHg2iIHGtiK6uEsEeegnPqDcpPkUj6i26U&quot)"
             username="Song PengFei" 
             tag="@songpengfei"
+          />
+          <UserCard 
+            userId="2"
+            userImage="https://avatars2.githubusercontent.com/u/26971233?v=4"
+            username="Drew Noma" 
+            tag="@dknoma"
           />
         </div>
       </div>

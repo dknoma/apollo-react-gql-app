@@ -36,8 +36,25 @@ export const GetProfileListQuery = gql`
 `;
 
 export const GetGitHubUser = gql`
-  query GetGitHubUser($id: Int!) {
-    getGitHubUser(id: $id) {
+  query GetGitHubUser($jwt: String!) {
+    getGitHubUser(Jwt: $jwt) {
+      id
+      username
+      html_url
+      avatar_url
+      bio
+      company
+      email
+      location
+      repos_url
+      public_repos
+    }
+  }
+`;
+
+export const GetGitHubUserById = gql`
+  query GetGitHubUserById($id: Int!) {
+    getGitHubUserById(id: $id) {
       id
       username
       html_url

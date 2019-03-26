@@ -14,7 +14,6 @@ import { ErrorBoundary } from './components/ErrorHandlers/errorboundary'
 class App extends Component {
   render() {
     return (
-      <ErrorBoundary>
         <div className="demo-big-content">
           <Layout>
           <Drawer>
@@ -56,7 +55,6 @@ class App extends Component {
             <Footer />
           </Layout>
         </div>
-      </ErrorBoundary>
     );
   }
 }

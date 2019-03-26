@@ -1,13 +1,9 @@
 import React, { Component } from "react";
-import { ProgressBar } from "react-bootstrap";
+// import { ProgressBar } from "react-bootstrap";
 import Logo from "react-svgporn";
 import "./skills.scss";
 
 class Skills extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="bg-grey mt-1 pt5 pb5">

@@ -7,29 +7,35 @@ import Skills from "../Skills/skills";
 import Experience from "../Experience/experience";
 import Projects from "../Projects/projects";
 import { Query } from "react-apollo"
-import { GetGitHubUser } from '../../queries/queries';
+import { GetGitHubUser, GetGitHubUserById } from '../../queries/queries';
 
 // TODO: Query profile here, pass as props to rest of components
 class SingleProfile extends Component {
   render() {
     const userId = parseInt(this.props.match.params.id);
     console.log("userId: " + userId);
+
+		var myData = localStorage.getItem('data');
+    console.log("mytok: " + myData)
     return (
       <div>
-        <Query query={GetGitHubUser} variables={{ id: userId}}>
+        {/* <Query query={GetGitHubUserById} variables={{ id: userId }}> */}
+        <Query query={GetGitHubUser} variables={{ jwt: myData }}>
           {
               ({loading, error, data}) => {
                   if(loading) {
                       return <p>Loading...</p>;
                   }
                   // console.log("DOOO : " + data)
-                  if(data == null || data.getGitHubUser == null) {
-                      throw new Error('404 Not Found');
-                  }
+                  // if(data === null) {
+                  //     throw new Error('404 Not Found');
+                  // }
                   if(error) {
-                      return {error};
+                    throw new Error('404 Not Found');
+                      // return {error};
                   }
-                  const gitHubUser = data.getGitHubUser
+                  const gitHubUser = data.GetGitHubUserById
+                  console.log("gitttt: " + gitHubUser)
                   return(
                     <div>
                       <AboutHeader user={gitHubUser}/>

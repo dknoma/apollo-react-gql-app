@@ -143,7 +143,7 @@ export class SignUp extends React.Component {
                             var tok = signup.signup.Jwt;
                             localStorage.setItem('data', tok)
                             this.setState({ data: tok });
-                            this.props.history.push('/')
+                            this.props.history.push('/githubauth')
                         }}
                     >
                         {
