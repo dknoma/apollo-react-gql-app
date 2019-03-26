@@ -16,11 +16,11 @@ class SingleProfile extends Component {
     console.log("userId: " + userId);
 
 		var myData = localStorage.getItem('data');
-    console.log("mytok: " + myData)
+    // console.log("mytok: " + myData)
     return (
       <div>
-        {/* <Query query={GetGitHubUserById} variables={{ id: userId }}> */}
-        <Query query={GetGitHubUser} variables={{ jwt: myData }}>
+        <Query query={GetGitHubUserById} variables={{ id: userId }}>
+        {/* <Query query={GetGitHubUser} variables={{ jwt: myData }}> */}
           {
               ({loading, error, data}) => {
                   if(loading) {
@@ -34,7 +34,7 @@ class SingleProfile extends Component {
                     throw new Error('404 Not Found');
                       // return {error};
                   }
-                  const gitHubUser = data.GetGitHubUserById
+                  const gitHubUser = data.getGitHubUserById
                   console.log("gitttt: " + gitHubUser)
                   return(
                     <div>

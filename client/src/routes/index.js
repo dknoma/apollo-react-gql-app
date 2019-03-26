@@ -33,7 +33,7 @@ class AppRouter extends React.Component {
                   <Route path={'/githubauth'} component={GitHubAuth} /* GitHubAuth route *//>
                   <Route path={'/MyProfile'} component={MyProfile}/>
                   <Route path={'/Explore'} component={Explore}/>
-                  <Route path={'/redirectauth'} component={ () => { window.location = 'http://localhost:8080/login/github?token=' + data; return null; } }/>
+                  <Route path={'/gitauth'} component={ () => { window.location = 'http://localhost:8080/login/github?token=' + data; return null; } }/>
                   <Route path="*" component={BadRequest} />
               </Switch>
             </ErrorBoundary>

@@ -22,7 +22,7 @@ export class GitHubAuth extends Component {
 				<button id="gitauth">
 				<Link 
 					style={{display: 'block', height: '100%'}}
-					to="/redirectauth"
+					to="/gitauth"
 				>
 					Authenticate GitHub
 				</Link>

@@ -65,6 +65,8 @@ export const GetGitHubUserById = gql`
       location
       repos_url
       public_repos
+      connections
+      featured
     }
   }
 `;
