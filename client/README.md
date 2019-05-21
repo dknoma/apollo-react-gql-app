@@ -74,6 +74,82 @@ Any path wrapped up by this error boundary can throw an error that will be caugh
 
 **NOTE: While the error page redirects successfully, the page doesnt actually refresh correctly if trying to go from the error boundary page to the home page or any other link on the page. Users need to do a refresh or manually enter the url they want to visit to reset the error boundary page. There might be a slight bug in the code in which the boundary doesn't redirect correctly or refresh correctly.
 
+# GraphQL
+
+```
+const apolloClientLink = createHttpLink({
+  uri: 'http://127.0.0.1:9090/graphql'
+});
+
+const client = new ApolloClient({
+    cache,
+    link: apolloClientLink
+});  // Apollo client
+
+// Add apollo to our app
+ReactDOM.render(
+  <ApolloProvider client={client}>
+    <Router>
+      <App />
+    </Router>
+  </ApolloProvider>,
+  document.getElementById('app')
+);
+```
+
+In order to utilize GraphQL to any degree in React, [Apollo](https://www.apollographql.com/docs/react) must be used. This allows React to talk to the GraphQL server. The GraphQL server will be in a separate repository and uses ApolloServer to run the GraphQL server. So Apollo will be used both to create the GraphQL server as well as allow communication between the React server and the GraphQL server. 
+
+GraphQL allows frontend requests to be easily sent to the backend without either knowing about how the other sends its information. The frontend feeds info to GraphQL where it parses those requests and sends them to the backend however the backend needs it. So, both frontend and backend developers only need to communicate to figure out what data is needed not how its sent. Backened will code the resolvers in the GraphQL repo to deliver the parameters how they need it, they don't need to worry about how the front end sends the data. 
+
+How requests are done in GraphQL are by Queries and Mutations. Queries are generally used for GET requests and Mutations are used for POST requests. This isn't strict, BUT it is the convention that should be followed. Queries are found in `src/queries/queries.js` and Mutations in `src/mutations/mutations.js`
+
+Query example (singleprofile.js):
+```
+<Query query={GetGitHubUser} variables={{ jwt: myData }}> // Name of the query const in src/queries/queries.js
+  {
+      ({loading, error, data}) => { // check if successfully queried to GraphQL
+          if(loading) {
+              return <p>Loading...</p>;
+          }
+          if(error) {
+            throw new Error('404 Not Found');
+          }
+          const gitHubUser = data.getGitHubUserById
+          return(
+            <div>
+              <AboutHeader user={gitHubUser}/>
+              <Summary user={gitHubUser}/>
+              <Skills user={gitHubUser}/>
+              <Projects user={gitHubUser}/>
+            </div>
+          )
+        }
+  }
+</Query>
+```
+
+Mutation example:
+```
+<Mutation 
+    mutation={SignUpForAccount} // name of the mutation const in src/mutations/mutations.js
+    variables={{ firstname, lastname, email,  password }} // parameters declared in mutations.js
+    onError={ (error) => { // used to catch GraphQL erroes
+        console.log(error)
+        this.setState({ errorMessage: "Email was already taken." });
+    }}
+    onCompleted={(signup) => { // what react should do if the mutation was successfully created
+        var tok = signup.signup.Jwt;
+        localStorage.setItem('data', tok)
+        this.setState({ data: tok });
+        this.props.history.push('/githubauth')
+    }}
+>
+    {
+        signup => <button disabled={!isEnabled} onClick={signup}>Submit</button> // part of what should be displayed on the page along with what other components are before and after this component
+    }
+</Mutation>
+```
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
