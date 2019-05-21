@@ -37,6 +37,34 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
+# Reuseable React Components
+> Components that can be used to wrap other components.
+
+## Error Boundaries
+> errorboundary.js
+
+Error boundaries allow devs to catch errors that are thrown within the components being wrapped by this boundary. You can define a custom error page in errorboundary.js so that when an error is caught the frontend redirects to this page.
+
+Use:
+```
+ <ErrorBoundary>
+    <Switch>
+        <Route exact path={'/'} component={Home} /* Home route *//>
+        <Route path={'/profiles/:id(\\d+)'} component={SingleProfile} /* Profile route *//>
+        <Route path={'/signup'} component={SignUp} /* Profile route *//>
+        <Route path={'/login'} component={Login} /* Profile route *//>
+        <Route path={'/githubauth'} component={GitHubAuth} /* GitHubAuth route *//>
+        <Route path={'/MyProfile'} component={MyProfile}/>
+        <Route path={'/Explore'} component={Explore}/>
+        <Route path="*" component={BadRequest} />
+    </Switch>
+  </ErrorBoundary>
+```
+
+Any path wrapped up by this error boundary can throw an error that will be caught by the error boundary. 
+
+**NOTE: While the error page redirects successfully, the page doesnt actually refresh correctly if trying to go from the error boundary page to the home page or any other link on the page. Users need to do a refresh or manually enter the url they want to visit to reset the error boundary page. There might be a slight bug in the code in which the boundary doesn't redirect correctly or refresh correctly.
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
