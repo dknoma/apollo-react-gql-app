@@ -37,10 +37,19 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-# Reuseable React Components
+# React
+> The general structure of this project and how to use things.
+
+Project structure:
+```
+src/ index.js -> App.js -> /routes/index.js (AppRouter class found here)
+```
+AppRouter contains the paths of the web pages. In order for the AppRouter to correctly redirect users, the `<Switch></Switch>` component MUST be used. The `NavBar` is the component that displays the top bar of the pages which contains the links to signup/login/logout, view the home page, and is where a profile icon should be displayed.
+
+## Reuseable components
 > Components that can be used to wrap other components.
 
-## Error Boundaries
+### Error Boundaries
 > errorboundary.js
 
 Error boundaries allow devs to catch errors that are thrown within the components being wrapped by this boundary. You can define a custom error page in errorboundary.js so that when an error is caught the frontend redirects to this page.
